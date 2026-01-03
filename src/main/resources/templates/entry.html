@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Entry Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e63946;
+      --secondary: #ffd60a;
+      --accent: #fff9e0;
+      --text-dark: #2d2d2d;
+      --text-light: #6b6b6b;
+      --border-light: #e8e8e8;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffd60a 0%, #ff8c42 50%, #e63946 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: var(--text-dark);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: linear-gradient(135deg, #ffffff 0%, #fff9e0 100%);
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: 0 12px 40px rgba(230, 57, 70, 0.12);
+      border: 1px solid rgba(230, 57, 70, 0.1);
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(124, 92, 220, 0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(124, 92, 220, 0.35);
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 24px;
+      margin: 20px 0 10px 0;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 10px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin-top: 22px;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    strong {
+      color: var(--primary);
+    }
+
+    div {
+      background: linear-gradient(135deg, #fff5f8, #f5f0ff);
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin: 8px 0;
+      border-left: 4px solid var(--secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="btn">← Back to Journal</a>
+    <h2 th:text="${entry.date}"></h2>
+
+    <div><strong>Mood: </strong><span th:text="${entry.mood}"></span> <span th:text="${entry.emoji}" style="font-size: 24px;"></span></div>
+
+    <h3>📝 Journal Entry</h3>
+    <p th:text="${entry.text}"></p>
+
+    <h3>🔍 Discover Yourself</h3>
+    <div><strong>1) What do you love about yourself?</strong><br/><span th:text="${entry.q1}"></span></div>
+    <div><strong>2) What did you learn?</strong><br/><span th:text="${entry.q2}"></span></div>
+    <div><strong>3) How did you handle challenges?</strong><br/><span th:text="${entry.q3}"></span></div>
+
+    <h3>✨ Affirmation for You</h3>
+    <div style="border-left-color: var(--primary); background: linear-gradient(135deg, #f5f0ff, #fff5f8);"><em th:text="${affirmation}"></em></div>
+  </div>
+</body>
+</html>

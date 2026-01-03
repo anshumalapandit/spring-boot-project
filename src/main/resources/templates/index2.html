@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Journal Junction</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #e63946;
+      --secondary: #ffd60a;
+      --accent: #fff9e0;
+      --text-dark: #2d2d2d;
+      --text-light: #6b6b6b;
+      --border-light: #e8e8e8;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    /* hero layout */
+    .hero {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    /* left media */
+    .hero-media img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(124, 92, 220, 0.15);
+      border: 6px solid var(--accent);
+    }
+
+    /* right content */
+    .hero-content h1 {
+      margin: 0 0 8px 0;
+      color: var(--primary);
+      font-size: 34px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      margin: 0 0 8px 0;
+      color: var(--text-light);
+      line-height: 1.45;
+      max-width: 520px;
+    }
+
+    .hero-sub {
+      margin: 0;
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    /* Responsive: stack on narrow screens */
+    @media (max-width: 820px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-media img {
+        width: 260px;
+        height: 260px;
+      }
+      .hero-content h1 { font-size: 30px; }
+      .hero-desc { max-width: none; padding: 0 18px; }
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffd60a 0%, #ff8c42 50%, #e63946 100%);
+      background-attachment: fixed;
+      color: var(--text-dark);
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: linear-gradient(135deg, #ffffff 0%, #fff9e0 100%);
+      backdrop-filter: blur(16px);
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 12px 40px rgba(230, 57, 70, 0.12);
+      border: 1px solid rgba(230, 57, 70, 0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    /* Heading */
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-size: 32px;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Section Labels */
+    label {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Inputs */
+    textarea, input {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      border-radius: 14px;
+      border: 1.5px solid #e8e8e8;
+      margin-top: 8px;
+      margin-bottom: 18px;
+      outline: none;
+      background: var(--accent);
+      color: var(--text-dark);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    textarea:focus, input:focus {
+      border-color: var(--secondary);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+    }
+
+    /* Emojis */
+    .emoji-picker span {
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 12px;
+      transition: transform 0.2s;
+    }
+
+    .emoji-picker span:hover {
+      transform: scale(1.25);
+    }
+
+    /* Buttons */
+    button {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(124, 92, 220, 0.25);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(124, 92, 220, 0.35);
+    }
+
+    /* Entries – White cards */
+    .entry-card {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      box-shadow: 0 6px 14px rgba(124, 92, 220, 0.08);
+      border: 1.5px solid #e8e8e8;
+      animation: fadeInUp 0.7s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .entry-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(124, 92, 220, 0.12);
+    }
+
+    .date {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .entry-preview {
+      color: var(--text-light);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <div class="container">
+    
+ <!-- HERO: GIF left, Title + description right (responsive) -->
+<div class="hero">
+  <div class="hero-media">
+    <!-- change filename if yours is different -->
+    <img th:src="@{/images/s1.gif}" alt="cute journalling gif" />
+  </div>
+
+  <div class="hero-content">
+    <h1>🌙 Journal Junction</h1>
+    <p class="hero-desc">
+      A cozy place to write, reflect and grow. Answer short prompts, pick a mood and build a gentle journaling habit — one small step every day.
+    </p>
+    <!-- small CTA or tagline if you want -->
+    <p class="hero-sub">Free. Private. Beautifully simple.</p>
+  </div>
+</div>
+
+    <form th:action="@{/add}" th:object="${newEntry}" method="post">
+
+      <label>Write your journal</label>
+      <textarea th:field="*{text}" placeholder="Share something about your day..."></textarea>
+
+      <br><br>
+
+      <label>✨ What are 3 things you love about yourself today?</label>
+      <input th:field="*{q1}" placeholder="I am proud of myself for..." />
+
+      <br><br>
+
+      <label>📘 What did you learn today?</label>
+      <input th:field="*{q2}" placeholder="Today I learned..." />
+
+      <br><br>
+
+      <label>🔥 One challenge & how you handled it</label>
+      <input th:field="*{q3}" placeholder="I managed..." />
+
+      <br><br>
+
+      <label>Choose your mood for today</label><br>
+      <span class="emoji-btn" onclick="setEmoji('😀')">😀</span>
+      <span class="emoji-btn" onclick="setEmoji('🙂')">🙂</span>
+      <span class="emoji-btn" onclick="setEmoji('😐')">😐</span>
+      <span class="emoji-btn" onclick="setEmoji('😔')">😔</span>
+      <span class="emoji-btn" onclick="setEmoji('😤')">😤</span>
+
+      <input type="hidden" id="emoji" th:field="*{emoji}" />
+
+      <button class="btn">Save Journal</button>
+    </form>
+
+    <h2 style="margin-top:25px;">📖 Past Entries</h2>
+
+    <div th:each="e : ${entries}" class="card">
+      <div class="date" th:text="${e.date}">2025-12-12</div>
+      <div th:text="${e.emoji}" style="font-size:28px;"></div>
+      <div th:text="${e.text}"></div>
+    </div>
+  </div>
+
+<script>
+function setEmoji(e){
+  document.getElementById("emoji").value = e;
+}
+</script>
+
+</body>
+</html>
