@@ -261,18 +261,6 @@ http://localhost:8080
 
 ---
 
-## 💡 Key Takeaways for Interviewers
-
-1. **Full-Stack Capability** - Built complete web app from backend to responsive frontend
-2. **Modern Design** - Custom color scheme, animations, glassmorphism effects
-3. **Clean Architecture** - MVC pattern with clear separation of concerns
-4. **Cloud Deployment** - Successfully deployed to Railway with zero-downtime
-5. **Best Practices** - Following Spring Boot conventions, responsive design, semantic HTML
-6. **Problem Solving** - Implemented custom quote logic, form validation, dynamic content rendering
-7. **User Experience** - Thoughtful UI with smooth interactions and mobile responsiveness
-
----
-
 ## 📞 Contact & Links
 
 - **GitHub Repository:** [spring-boot-project](https://github.com/anshumalapandit/spring-boot-project)
