@@ -2,7 +2,7 @@
 
 A modern, full-stack journaling web application built with **Spring Boot** that helps users reflect, grow, and build healthy journaling habits with motivational quotes and mood tracking.
 
-**🔗 Live Demo:** [spring-boot-project-production-1a4b.up.railway.app](https://spring-boot-project-production-1a4b.up.railway.app)
+**🔗 Live Demo:** [spring-boot-project-production-1a4b.up.railway.app](https://spring-boot-project-production-c896.up.railway.app/)
 
 ---
 
