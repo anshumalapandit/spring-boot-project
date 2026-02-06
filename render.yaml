@@ -1,7 +1,7 @@
 services:
   - type: web
     name: spring-boot-project
-    env: java
+    env: docker
     plan: free
     buildCommand: chmod +x mvnw && ./mvnw clean package
     startCommand: java -jar target/*.jar
