@@ -10,4 +10,7 @@ RUN chmod +x mvnw \
 
 EXPOSE 8080
 
+# 👇 THIS IS THE KEY
+ENV PORT=8080
+
 CMD ["java", "-jar", "app.jar"]
